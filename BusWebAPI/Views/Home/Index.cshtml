@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-weight-bolder">All Bus Details</h1>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#add_edit_dialog">Add New Bus Details</button>
+</div>
+<hr />
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Source City</th>
+                <th>Destination City</th>
+                <th>Price</th>
+                <th>Bus Type</th>
+                <th colspan="2">Operations</th>
+            </tr>
+        </thead>
+        <tbody id="table_details">
+            <tr>
+                <td colspan="6" align="center">No Bus information</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add/Edit Bus Modal Dialog Box -->
+<div class="modal" tabindex="-1" role="dialog" id="add_edit_dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="model_title">Add Bus Details</h5>
+                <button type="button" onclick="resetForm()" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="source">Enter Source City: </label>
+                        <input type="text" class="form-control" id="source">
+                        <input type="hidden" id="bus_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Enter Destination City: </label>
+                        <input type="text" class="form-control" id="destination">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Enter Price: </label>
+                        <input type="number" class="form-control" id="price" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Choose Bus Type Area: </label>
+                        <select id="type" class="form-control">
+                            <option value="Normal">Normal</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Volvo">Volvo</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="output">
+
+                    </div>
+                    <button type="button" onclick="saveBusDetails()" class="btn btn-primary">Save Bus Details</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="resetForm()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            displayAllBuses();
+        });
+    </script>
+}
